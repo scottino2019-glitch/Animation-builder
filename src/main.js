@@ -8,10 +8,21 @@ const ANIMATION_TYPES = [
     { id: 'rotate', label: 'Rotate' },
     { id: 'bounce', label: 'Bounce' },
     { id: 'flip', label: 'Flip' },
+    { id: 'swing', label: 'Swing' },
+    { id: 'shake', label: 'Shake' },
+    { id: 'zoom-in', label: 'Zoom In' },
 ];
 
 const EASING_TYPES = [
-    'linear', 'ease-in', 'ease-out', 'ease-in-out', 'cubic-bezier(0.4, 0, 0.2, 1)', 'cubic-bezier(0, 0, 0.2, 1)', 'cubic-bezier(0.4, 0, 1, 1)', 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+    'linear', 
+    'ease-in', 
+    'ease-out', 
+    'ease-in-out', 
+    'cubic-bezier(0.4, 0, 0.2, 1)', 
+    'cubic-bezier(0, 0, 0.2, 1)', 
+    'cubic-bezier(0.4, 0, 1, 1)', 
+    'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 ];
 
 const ELEMENT_TEMPLATES = {
@@ -200,44 +211,73 @@ function getKeyframes(type) {
             return [{ opacity: 0 }, { opacity: 1 }];
         case 'slide-up':
             return [
-                { opacity: 0, transform: 'translateY(50px)' },
+                { opacity: 0, transform: 'translateY(30px)' },
                 { opacity: 1, transform: 'translateY(0)' }
             ];
         case 'slide-down':
             return [
-                { opacity: 0, transform: 'translateY(-50px)' },
+                { opacity: 0, transform: 'translateY(-30px)' },
                 { opacity: 1, transform: 'translateY(0)' }
             ];
         case 'slide-left':
             return [
-                { opacity: 0, transform: 'translateX(50px)' },
+                { opacity: 0, transform: 'translateX(30px)' },
                 { opacity: 1, transform: 'translateX(0)' }
             ];
         case 'slide-right':
             return [
-                { opacity: 0, transform: 'translateX(-50px)' },
+                { opacity: 0, transform: 'translateX(-30px)' },
                 { opacity: 1, transform: 'translateX(0)' }
             ];
         case 'scale':
             return [
-                { opacity: 0, transform: 'scale(0.5)' },
+                { opacity: 0, transform: 'scale(0.8)' },
                 { opacity: 1, transform: 'scale(1)' }
             ];
         case 'rotate':
             return [
-                { opacity: 0, transform: 'rotate(-180deg) scale(0.5)' },
-                { opacity: 1, transform: 'rotate(0) scale(1)' }
+                { opacity: 0, transform: 'rotate(-15deg) scale(0.9)', transformOrigin: 'center' },
+                { opacity: 1, transform: 'rotate(0) scale(1)', transformOrigin: 'center' }
             ];
         case 'bounce':
             return [
                 { opacity: 0, transform: 'scale(0.3)', offset: 0 },
-                { opacity: 1, transform: 'scale(1.1)', offset: 0.7 },
+                { opacity: 1, transform: 'scale(1.05)', offset: 0.5 },
+                { opacity: 1, transform: 'scale(0.9)', offset: 0.7 },
                 { opacity: 1, transform: 'scale(1)', offset: 1 }
             ];
         case 'flip':
             return [
-                { opacity: 0, transform: 'perspective(400px) rotateX(90deg)' },
-                { opacity: 1, transform: 'perspective(400px) rotateX(0)' }
+                { opacity: 0, transform: 'perspective(1000px) rotateX(-90deg)', transformOrigin: 'top' },
+                { opacity: 1, transform: 'perspective(1000px) rotateX(0deg)', transformOrigin: 'top' }
+            ];
+        case 'swing':
+            return [
+                { transform: 'rotate(0deg)', transformOrigin: 'top center', offset: 0 },
+                { transform: 'rotate(15deg)', transformOrigin: 'top center', offset: 0.2 },
+                { transform: 'rotate(-10deg)', transformOrigin: 'top center', offset: 0.4 },
+                { transform: 'rotate(5deg)', transformOrigin: 'top center', offset: 0.6 },
+                { transform: 'rotate(-5deg)', transformOrigin: 'top center', offset: 0.8 },
+                { transform: 'rotate(0deg)', transformOrigin: 'top center', offset: 1 }
+            ];
+        case 'shake':
+            return [
+                { transform: 'translateX(0)', offset: 0 },
+                { transform: 'translateX(-10px)', offset: 0.1 },
+                { transform: 'translateX(10px)', offset: 0.2 },
+                { transform: 'translateX(-10px)', offset: 0.3 },
+                { transform: 'translateX(10px)', offset: 0.4 },
+                { transform: 'translateX(-10px)', offset: 0.5 },
+                { transform: 'translateX(10px)', offset: 0.6 },
+                { transform: 'translateX(-10px)', offset: 0.7 },
+                { transform: 'translateX(10px)', offset: 0.8 },
+                { transform: 'translateX(-10px)', offset: 0.9 },
+                { transform: 'translateX(0)', offset: 1 }
+            ];
+        case 'zoom-in':
+            return [
+                { opacity: 0, transform: 'scale(1.5)' },
+                { opacity: 1, transform: 'scale(1)' }
             ];
         default:
             return [{ opacity: 0 }, { opacity: 1 }];
