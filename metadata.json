@@ -1,0 +1,5 @@
+{
+  "name": "Motion Studio",
+  "description": "A professional animation generator for web elements using Motion. Create, preview, and export animations for cards, buttons, menus, and more.",
+  "requestFramePermissions": []
+}
